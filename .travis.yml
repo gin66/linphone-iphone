@@ -16,6 +16,10 @@ before_install:
     - sudo ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize
     - git submodule update --init --recursive
     - find submodules -name .git -execdir git checkout \;
+    - find submodules -name 'mscommon.h'
+    - git submodule update --recursive
+    - find submodules -name .git -execdir git checkout \;
+    - find submodules -name 'mscommon.h'
 
 install:
     - ./prepare.py -d x86_64 -G Ninja
@@ -23,7 +27,7 @@ install:
     - mkdir -p $KIF_SCREENSHOTS
 
 script:
-    - xcodebuild -project linphone.xcodeproj -scheme linphone -sdk iphonesimulator -destination name='iPhone 6' build 1>/dev/null
+    - xcodebuild -project linphone.xcodeproj -scheme linphone -sdk iphonesimulator -destination name='iPhone 6' build
     - xcodebuild -project linphone.xcodeproj -scheme linphone -sdk iphonesimulator -destination name='iPhone 6' test
 
 after_script:
