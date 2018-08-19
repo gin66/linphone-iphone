@@ -15,6 +15,7 @@ before_install:
     - sudo mv gas-preprocessor.pl /usr/local/bin
     - sudo ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize
     - git submodule update --init --recursive
+    - find submodules -name .git -execdir git checkout \;
 
 install:
     - ./prepare.py -d x86_64 -G Ninja
